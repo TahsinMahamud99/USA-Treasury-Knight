@@ -1,0 +1,108 @@
+[gd_scene load_steps=18 format=3 uid="uid://bvhiddnb5nfex"]
+
+[ext_resource type="Texture2D" uid="uid://c7uyk0kd6bh25" path="res://img/Background.png" id="1_lxse1"]
+[ext_resource type="PackedScene" uid="uid://f7wmkre807ni" path="res://Scenes/player.tscn" id="1_yja2v"]
+[ext_resource type="Texture2D" uid="uid://dw5gyojgodqx5" path="res://img/trace_07.png" id="2_0erme"]
+[ext_resource type="PackedScene" uid="uid://cnugid21bkg33" path="res://Scenes/dragon_head.tscn" id="2_0rjse"]
+[ext_resource type="PackedScene" uid="uid://bnnkac68tljl5" path="res://Scenes/wings.tscn" id="3_vff20"]
+[ext_resource type="Texture2D" uid="uid://cma6jqhd7q17g" path="res://img/Dragon body.png" id="4_va8lf"]
+[ext_resource type="Script" path="res://Scripts/health_player.gd" id="5_yqyop"]
+[ext_resource type="Texture2D" uid="uid://c3lqkvso8nsk0" path="res://img/Gold.png" id="6_1qbfl"]
+[ext_resource type="PackedScene" uid="uid://uu7fx2yky207" path="res://Scenes/question_generator.tscn" id="8_m2bnl"]
+[ext_resource type="PackedScene" uid="uid://b0ayiiqmfy6ln" path="res://Scenes/flame.tscn" id="9_vamot"]
+[ext_resource type="PackedScene" uid="uid://c8kwn5wse7m8k" path="res://Scenes/health_player.tscn" id="10_e4xfq"]
+[ext_resource type="PackedScene" uid="uid://cgaossih53t2n" path="res://Scenes/dragon_health.tscn" id="11_hvbtw"]
+[ext_resource type="Script" path="res://Scripts/dragon_health.gd" id="12_brn25"]
+[ext_resource type="Script" path="res://Scripts/final_message.gd" id="14_2m5u8"]
+[ext_resource type="FontFile" uid="uid://rn3goesbrfti" path="res://fonts/8bitOperatorPlus8-Bold.ttf" id="14_aritt"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v7ydw"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.5
+color = Color(1, 0.847059, 0.215686, 0.0313726)
+
+[sub_resource type="Theme" id="Theme_baa2m"]
+default_font = ExtResource("14_aritt")
+
+[node name="game" type="Node2D"]
+
+[node name="Background2" type="Sprite2D" parent="."]
+position = Vector2(44.9526, 222.097)
+rotation = 3.14159
+scale = Vector2(0.0878369, 0.131101)
+texture = ExtResource("1_lxse1")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(45, 62)
+scale = Vector2(0.0878906, 0.0807292)
+texture = ExtResource("1_lxse1")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(46, 9)
+process_material = SubResource("ParticleProcessMaterial_v7ydw")
+texture = ExtResource("2_0erme")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_yja2v")]
+position = Vector2(47, 97)
+
+[node name="ProgressBar" parent="CharacterBody2D" instance=ExtResource("10_e4xfq")]
+offset_left = -5.0
+offset_top = -8.0
+offset_right = 5.0
+offset_bottom = -5.0
+script = ExtResource("5_yqyop")
+controller_path = NodePath("../../Question generator")
+
+[node name="wings" parent="." instance=ExtResource("3_vff20")]
+position = Vector2(4, 0)
+
+[node name="DragonBody" type="Sprite2D" parent="."]
+position = Vector2(44, 55)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("4_va8lf")
+
+[node name="Gold" type="Sprite2D" parent="."]
+position = Vector2(51, 70)
+scale = Vector2(0.0732031, 0.0315365)
+texture = ExtResource("6_1qbfl")
+
+[node name="Question generator" parent="." instance=ExtResource("8_m2bnl")]
+offset_left = 3.0
+offset_top = 100.0
+offset_right = 3.0
+offset_bottom = 100.0
+
+[node name="Dragon Head" parent="." instance=ExtResource("2_0rjse")]
+position = Vector2(44, 43)
+flame_scene = ExtResource("9_vamot")
+
+[node name="ProgressBar2" parent="." instance=ExtResource("11_hvbtw")]
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 83.0
+offset_bottom = 10.0
+script = ExtResource("12_brn25")
+controller_path = NodePath("../Question generator")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = 15.0
+offset_top = 32.0
+offset_right = 76.0
+offset_bottom = 56.0
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme = SubResource("Theme_baa2m")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 4
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+script = ExtResource("14_2m5u8")
+question_generator_path = NodePath("../../Question generator")

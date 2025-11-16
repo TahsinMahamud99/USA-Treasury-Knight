@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://31uhb8dxkp4m"]
+
+[ext_resource type="FontFile" uid="uid://rn3goesbrfti" path="res://fonts/8bitOperatorPlus8-Bold.ttf" id="1_hrqki"]
+
+[resource]
+default_font = ExtResource("1_hrqki")
+default_font_size = 4

@@ -1,0 +1,53 @@
+{
+	"questions": [
+		{
+			"answer": "About $183.8B",
+			"options": [
+				"About $183.8B",
+				"About $18.38B"
+			],
+			"question": "In fiscal year 2023, approximately how much did the federal government award in prime awards to Virginia?"
+		},
+		{
+			"answer": "$183.8B",
+			"options": [
+				"$183.8B",
+				"$100B"
+			],
+			"question": "In fiscal year 2023, approximately how much did the federal government award in prime awards to Virginia?"
+		},
+		{
+			"answer": "True",
+			"options": [
+				"True",
+				"False"
+			],
+			"question": "True or False: In fiscal year 2023, the federal government awarded approximately $183.8 billion in prime awards to Virginia."
+		},
+		{
+			"answer": "Virginia",
+			"options": [
+				"Virginia",
+				"Maryland"
+			],
+			"question": "In fiscal year 2023, approximately $183.8 billion in federal prime awards were granted to which state?"
+		},
+		{
+			"answer": "Virginia",
+			"options": [
+				"Virginia",
+				"Maryland"
+			],
+			"question": "In fiscal year 2023, which state received approximately $183.8B in federal prime awards?"
+		},
+		{
+			"answer": "$183.8B",
+			"options": [
+				"$183.8B",
+				"$138.8B"
+			],
+			"question": "Approximately how much did the federal government award in prime awards to Virginia in fiscal year 2023?"
+		}
+	],
+	"source_state_file": "res://data/state_quiz_51.json"
+}

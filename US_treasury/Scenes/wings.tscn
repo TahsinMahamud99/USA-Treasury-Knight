@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnnkac68tljl5"]
+
+[ext_resource type="Texture2D" uid="uid://d20hip2kwumqx" path="res://img/Left wing.png" id="1_38mpl"]
+[ext_resource type="Script" path="res://Scripts/Lwing.gd" id="2_wtccv"]
+[ext_resource type="Script" path="res://Scripts/Rwing.gd" id="3_tufvf"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p6ghi"]
+load_path = "res://.godot/imported/Right wing.png-1676450f9c2775609df64204a91662f5.ctex"
+
+[node name="wings" type="Node2D"]
+position = Vector2(-41, -36)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(14, 37.56)
+scale = Vector2(0.125, 0.08)
+texture = ExtResource("1_38mpl")
+script = ExtResource("2_wtccv")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(69, 37.56)
+scale = Vector2(0.128, 0.08)
+texture = SubResource("CompressedTexture2D_p6ghi")
+script = ExtResource("3_tufvf")

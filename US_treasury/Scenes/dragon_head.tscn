@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://cnugid21bkg33"]
+
+[ext_resource type="Script" path="res://Scripts/dragon_head.gd" id="1_ecwji"]
+[ext_resource type="Texture2D" uid="uid://dpkylj3t3wr2a" path="res://img/Screenshot 2025-11-14 070958.jpg" id="2_4akiu"]
+[ext_resource type="Texture2D" uid="uid://bogphvxewnfky" path="res://img/Dragon Head.png" id="3_47uig"]
+
+[sub_resource type="Gradient" id="Gradient_2yey6"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dhgk1"]
+gradient = SubResource("Gradient_2yey6")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h6jeh"]
+size = Vector2(36, 40)
+
+[sub_resource type="Gradient" id="Gradient_41odq"]
+colors = PackedColorArray(0.965514, 0.857551, 3.08037e-06, 1, 1, 0, 0.0705882, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yu5vy"]
+gradient = SubResource("Gradient_41odq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_filc3"]
+particle_flag_disable_z = true
+gravity = Vector3(-20, -20, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_max = 50.0
+color_ramp = SubResource("GradientTexture1D_yu5vy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k4ja5"]
+particle_flag_disable_z = true
+gravity = Vector3(20, -20, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_max = 50.0
+color_ramp = SubResource("GradientTexture1D_yu5vy")
+
+[node name="Dragon Head" type="Area2D"]
+script = ExtResource("1_ecwji")
+
+[node name="NeckBase" type="Marker2D" parent="."]
+position = Vector2(0, -5)
+
+[node name="NeckPolygon" type="Polygon2D" parent="."]
+texture_filter = 5
+texture_repeat = 2
+position = Vector2(0, -5)
+texture = ExtResource("2_4akiu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(3.8147e-06, -13)
+scale = Vector2(0.5625, 0.625)
+texture = SubResource("GradientTexture2D_dhgk1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(3.8147e-06, -13)
+shape = SubResource("RectangleShape2D_h6jeh")
+
+[node name="Layer2" type="Sprite2D" parent="."]
+position = Vector2(-3.95997e-07, -13)
+scale = Vector2(0.0884521, 0.0819672)
+texture = ExtResource("3_47uig")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-5, -12)
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_filc3")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+position = Vector2(5, -12)
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_k4ja5")

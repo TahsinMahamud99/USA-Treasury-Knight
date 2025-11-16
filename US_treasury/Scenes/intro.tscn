@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddbknr4cvwgx0"]
+
+[ext_resource type="Script" path="res://Scripts/intro.gd" id="1_0glad"]
+[ext_resource type="PackedScene" uid="uid://d3ud5ttjbaqap" path="res://Scenes/start_button.tscn" id="2_fpr61"]
+[ext_resource type="Texture2D" uid="uid://ecln6k7xw2ir" path="res://img/Cave.png" id="2_pwpij"]
+[ext_resource type="PackedScene" uid="uid://j17o3qk16lwb" path="res://Scenes/dialogue.tscn" id="3_2ayo3"]
+
+[node name="intro" type="Node2D"]
+script = ExtResource("1_0glad")
+
+[node name="Cave" type="Sprite2D" parent="."]
+position = Vector2(45, 80)
+scale = Vector2(0.0878906, 0.104167)
+texture = ExtResource("2_pwpij")
+
+[node name="dialogue" parent="." instance=ExtResource("3_2ayo3")]
+position = Vector2(0, 61)
+
+[node name="Button" parent="." instance=ExtResource("2_fpr61")]
+offset_left = 23.0
+offset_top = 129.0
+offset_right = 68.0
+offset_bottom = 143.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnugid21bkg33"]
+
+[ext_resource type="Script" path="res://Scripts/dragon_head.gd" id="1_ecwji"]
+
+[sub_resource type="Gradient" id="Gradient_2yey6"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dhgk1"]
+gradient = SubResource("Gradient_2yey6")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h6jeh"]
+size = Vector2(32, 40)
+
+[node name="Dragon Head" type="Area2D"]
+script = ExtResource("1_ecwji")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.625)
+texture = SubResource("GradientTexture2D_dhgk1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_h6jeh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

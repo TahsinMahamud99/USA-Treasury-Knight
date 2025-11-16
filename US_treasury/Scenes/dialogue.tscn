@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://j17o3qk16lwb"]
+
+[ext_resource type="Texture2D" uid="uid://b3rha268vkq1e" path="res://img/villeger.png" id="1_l80ii"]
+[ext_resource type="Texture2D" uid="uid://c3b5yccm0ckop" path="res://img/paper texture.png" id="2_nwg0g"]
+[ext_resource type="FontFile" uid="uid://rn3goesbrfti" path="res://fonts/8bitOperatorPlus8-Bold.ttf" id="2_t55lo"]
+[ext_resource type="Script" path="res://Scripts/dialogue.gd" id="3_ivids"]
+
+[sub_resource type="Theme" id="Theme_mqarv"]
+default_font = ExtResource("2_t55lo")
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("3_ivids")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 90.0
+offset_bottom = 26.0
+texture = ExtResource("2_nwg0g")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_direction = 1
+offset_left = 21.0
+offset_top = 1.0
+offset_right = 88.0
+offset_bottom = 25.0
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme = SubResource("Theme_mqarv")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 3
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(11, 13)
+scale = Vector2(0.0859375, 0.101563)
+texture = ExtResource("1_l80ii")

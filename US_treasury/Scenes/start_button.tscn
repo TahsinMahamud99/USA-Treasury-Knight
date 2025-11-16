@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3ud5ttjbaqap"]
+
+[ext_resource type="FontFile" uid="uid://rn3goesbrfti" path="res://fonts/8bitOperatorPlus8-Bold.ttf" id="1_8jjoc"]
+
+[sub_resource type="Theme" id="Theme_hwh7x"]
+
+[node name="Button" type="Button"]
+offset_right = 45.0
+offset_bottom = 14.0
+theme = SubResource("Theme_hwh7x")
+theme_override_fonts/font = ExtResource("1_8jjoc")
+theme_override_font_sizes/font_size = 8
+text = "Start"

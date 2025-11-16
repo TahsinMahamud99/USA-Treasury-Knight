@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://yu2rmrsbl2gc"]
+
+[node name="Health_Bar" type="Node2D"]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0

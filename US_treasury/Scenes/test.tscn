@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://7byykx5jku4o"]
+
+[ext_resource type="PackedScene" uid="uid://cnugid21bkg33" path="res://Scenes/dragon_head.tscn" id="1_kj2fi"]
+[ext_resource type="PackedScene" uid="uid://uu7fx2yky207" path="res://Scenes/question_generator.tscn" id="2_h1xpl"]
+[ext_resource type="PackedScene" uid="uid://f7wmkre807ni" path="res://Scenes/player.tscn" id="3_orixo"]
+[ext_resource type="PackedScene" uid="uid://b0ayiiqmfy6ln" path="res://Scenes/flame.tscn" id="4_rnivs"]
+
+[node name="test" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_orixo")]
+position = Vector2(42, 73)
+
+[node name="Dragon Head" parent="." instance=ExtResource("1_kj2fi")]
+position = Vector2(46, 49)
+
+[node name="Question generator" parent="." instance=ExtResource("2_h1xpl")]
+offset_top = 77.0
+offset_bottom = 77.0
+
+[node name="Node2D" parent="." instance=ExtResource("4_rnivs")]
+position = Vector2(51, 49)

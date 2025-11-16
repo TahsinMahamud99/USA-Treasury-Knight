@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://sot045brpa4p"]
+
+[ext_resource type="Script" path="res://Scripts/USASpendingAPI.gd" id="1_xs7tm"]
+[ext_resource type="Script" path="res://Scripts/question_generato.r_geminigd.gd" id="2_c43yn"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_xs7tm")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("2_c43yn")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Node"]
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="request_completed" from="Node/HTTPRequest" to="." method="_on_http_request2_completed"]

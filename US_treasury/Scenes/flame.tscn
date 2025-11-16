@@ -1,0 +1,125 @@
+[gd_scene load_steps=13 format=3 uid="uid://b0ayiiqmfy6ln"]
+
+[sub_resource type="GDScript" id="GDScript_5fqn8"]
+script/source = "extends Area2D
+
+@export var speed: float = 80.0		# base speed toward player
+@export var lifetime: float = 1.0	# seconds before despawn
+
+var velocity: Vector2 = Vector2.ZERO
+var deflected: bool = false
+
+@onready var player: Node2D = get_tree().get_first_node_in_group(\"player\")
+
+
+func _ready() -> void:
+	# initial aim toward player
+	if player:
+		velocity = (player.global_position - global_position).normalized() * speed
+
+	# auto-despawn
+	if lifetime > 0.0:
+		get_tree().create_timer(lifetime).timeout.connect(queue_free)
+
+
+func _physics_process(delta: float) -> void:
+	if not deflected:
+		if player and is_instance_valid(player):
+			var dir := (player.global_position - global_position).normalized()
+			velocity = dir * speed
+
+	position += velocity * delta
+
+
+# Called from the question Control script when the player slashes correctly
+func deflect_away_from_player(player_pos: Vector2) -> void:
+	deflected = true
+
+	# direction from player to flame (away from player)
+	var dir := (global_position - player_pos).normalized()
+
+	# 3x original speed
+	velocity = dir * speed
+"
+
+[sub_resource type="Gradient" id="Gradient_2c675"]
+offsets = PackedFloat32Array(0, 0.481481, 1)
+colors = PackedColorArray(0.796078, 0.756863, 0, 1, 0.945544, 0.273733, 0.307557, 1, 1, 0.223529, 0.105882, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_stppb"]
+gradient = SubResource("Gradient_2c675")
+
+[sub_resource type="Curve" id="Curve_cd65g"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.768421), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_i7ca2"]
+curve = SubResource("Curve_cd65g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ukimi"]
+lifetime_randomness = 0.03
+emission_shape = 1
+emission_sphere_radius = 5.0
+particle_flag_disable_z = true
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_max = 100.0
+damping_min = 100.0
+damping_max = 100.0
+scale_min = 0.5
+scale_max = 2.5
+scale_curve = SubResource("CurveTexture_i7ca2")
+color_ramp = SubResource("GradientTexture1D_stppb")
+attractor_interaction_enabled = false
+
+[sub_resource type="Gradient" id="Gradient_q71yt"]
+colors = PackedColorArray(1, 0.815686, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x4nyx"]
+gradient = SubResource("Gradient_q71yt")
+width = 2
+height = 2
+use_hdr = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sjlv7"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -5.0
+angle_max = 5.0
+hue_variation_min = -1.0
+hue_variation_max = 0.85
+
+[sub_resource type="Gradient" id="Gradient_kmjkf"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.968627, 0.894118, 0, 0.0627451)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x6cut"]
+gradient = SubResource("Gradient_kmjkf")
+width = 8
+height = 8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wquep"]
+size = Vector2(8, 8)
+
+[node name="Area2D" type="Area2D" groups=["flame"]]
+script = SubResource("GDScript_5fqn8")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 80
+process_material = SubResource("ParticleProcessMaterial_ukimi")
+texture = SubResource("GradientTexture2D_x4nyx")
+trail_sections = 2
+trail_section_subdivisions = 1
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_sjlv7")
+texture = SubResource("GradientTexture2D_x6cut")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wquep")

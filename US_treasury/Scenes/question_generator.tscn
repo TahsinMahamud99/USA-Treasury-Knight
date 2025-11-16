@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://uu7fx2yky207"]
+
+[ext_resource type="Script" path="res://Scripts/question_generator.gd" id="1_qag1h"]
+[ext_resource type="Theme" uid="uid://31uhb8dxkp4m" path="res://Scenes/themes/font_theme_1.tres" id="2_6i52w"]
+[ext_resource type="FontFile" uid="uid://rn3goesbrfti" path="res://fonts/8bitOperatorPlus8-Bold.ttf" id="2_pc2w4"]
+[ext_resource type="Texture2D" uid="uid://c2tbmklre25i6" path="res://img/scroll.png" id="2_ttmjs"]
+[ext_resource type="PackedScene" uid="uid://d3r8qiyvnnpga" path="res://Scenes/arrow.tscn" id="5_o0vf0"]
+
+[sub_resource type="Theme" id="Theme_q8wl6"]
+
+[node name="Question generator" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_qag1h")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 90.0
+offset_bottom = 59.0
+theme = SubResource("Theme_q8wl6")
+texture = ExtResource("2_ttmjs")
+expand_mode = 3
+flip_h = true
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
+clip_contents = true
+layout_mode = 0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 79.0
+offset_bottom = 52.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Question" type="Label" parent="TextureRect/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("2_6i52w")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_pc2w4")
+theme_override_font_sizes/font_size = 4
+text = "Answer the following question with True or false"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Option L" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_6i52w")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.827451, 0.858824, 0.133333, 1)
+text = "Answer 1"
+horizontal_alignment = 2
+
+[node name="Option R" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_6i52w")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.827451, 0.858824, 0.133333, 1)
+text = "Answer 2"
+horizontal_alignment = 1
+
+[node name="Arrow" parent="." instance=ExtResource("5_o0vf0")]
+position = Vector2(83, 31)
+scale = Vector2(0.5, 0.5)
+
+[node name="Arrow2" parent="." instance=ExtResource("5_o0vf0")]
+position = Vector2(6, 31)
+rotation = -3.14159
+scale = Vector2(0.5, 0.5)

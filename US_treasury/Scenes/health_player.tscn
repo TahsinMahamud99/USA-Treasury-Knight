@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://c8kwn5wse7m8k"]
+
+[sub_resource type="Theme" id="Theme_34c18"]
+
+[sub_resource type="Gradient" id="Gradient_wrw6p"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.278431, 0.223529, 0.0588235, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x2v4b"]
+gradient = SubResource("Gradient_wrw6p")
+width = 55
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tq7ig"]
+texture = SubResource("GradientTexture2D_x2v4b")
+
+[sub_resource type="Gradient" id="Gradient_kgtf2"]
+colors = PackedColorArray(0.0259171, 0.210837, 7.21961e-08, 1, 0.337255, 1, 0.2, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sj238"]
+gradient = SubResource("Gradient_kgtf2")
+width = 19
+height = 4
+fill_from = Vector2(1, 0.772727)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_omdf5"]
+texture = SubResource("GradientTexture2D_sj238")
+
+[node name="ProgressBar" type="ProgressBar"]
+offset_right = 80.0
+offset_bottom = 6.0
+theme = SubResource("Theme_34c18")
+theme_override_styles/background = SubResource("StyleBoxTexture_tq7ig")
+theme_override_styles/fill = SubResource("StyleBoxTexture_omdf5")
+step = 20.0
+value = 20.0
+rounded = true
+show_percentage = false
